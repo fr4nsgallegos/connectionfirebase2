@@ -88,12 +88,45 @@ class LoginPage extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    await _firebaseAuth.createUserWithEmailAndPassword(
-                      email: _correoController.text,
-                      password: _passwordController.text,
-                    );
+                    try {
+                      await _firebaseAuth.createUserWithEmailAndPassword(
+                        email: _correoController.text,
+                        password: _passwordController.text,
+                      );
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            e.toString(),
+                          ),
+                        ),
+                      );
+                    }
                   },
                   child: Text("Crear cuenta"),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      await _firebaseAuth.signInWithEmailAndPassword(
+                          email: _correoController.text,
+                          password: _passwordController.text);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("ya inicio sesion"),
+                        ),
+                      );
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            e.toString(),
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text("Iniciar sesión"),
                 )
               ],
             )
