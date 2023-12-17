@@ -1,0 +1,105 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  TextEditingController _correoController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  Widget fondo() {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF012F3D),
+            Color(0xFF0A4F64),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            fondo(),
+            Column(
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.account_circle_outlined,
+                  color: Colors.white,
+                ),
+                Text(
+                  "APP DE VOTACIONES",
+                  style: TextStyle(color: Colors.white, fontSize: 35),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Correo electronico",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(
+                      height: 60,
+                      child: TextField(
+                        controller: _correoController,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Constraseña",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(
+                      height: 60,
+                      child: TextField(
+                        controller: _passwordController,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    await _firebaseAuth.createUserWithEmailAndPassword(
+                      email: _correoController.text,
+                      password: _passwordController.text,
+                    );
+                  },
+                  child: Text("Crear cuenta"),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
