@@ -29,10 +29,13 @@ class _HomePage2State extends State<HomePage2> {
               return ListView.builder(
                 itemCount: docs.length,
                 itemBuilder: (BuildContext context, int index) {
+                  Map<String, dynamic> myDoc =
+                      docs[index].data() as Map<String, dynamic>;
+                  print(myDoc['lastName']);
+
                   return miCard();
                 },
               );
-              // return miCard();
             } else {
               return Center(
                 child: Text("error"),
