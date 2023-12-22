@@ -1,4 +1,5 @@
 import 'package:conectionfirebase2/pages/candidate_page.dart';
+import 'package:conectionfirebase2/pages/create_page.dart';
 import 'package:conectionfirebase2/pages/home_page.dart';
 import 'package:conectionfirebase2/pages/home_page2.dart';
 import 'package:conectionfirebase2/pages/login_page.dart';
@@ -12,6 +13,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MaterialApp(
-    home: LoginPage(),
+    home: CreatePage(),
   ));
 }

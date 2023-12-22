@@ -1,7 +1,8 @@
+import 'package:conectionfirebase2/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class CreatePage extends StatelessWidget {
   TextEditingController _correoController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -21,10 +22,6 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  _signInWithGoogle() {
-    try {} catch (e) {}
   }
 
   @override
@@ -52,7 +49,7 @@ class LoginPage extends StatelessWidget {
                     height: 30,
                   ),
                   Text(
-                    "Inicia sesión",
+                    "Crea una cuenta",
                     style: TextStyle(color: Colors.white, fontSize: 30),
                   ),
                   SizedBox(
@@ -102,13 +99,9 @@ class LoginPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () async {
                       try {
-                        await _firebaseAuth.signInWithEmailAndPassword(
-                            email: _correoController.text,
-                            password: _passwordController.text);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("ya inicio sesion"),
-                          ),
+                        await _firebaseAuth.createUserWithEmailAndPassword(
+                          email: _correoController.text,
+                          password: _passwordController.text,
                         );
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -120,16 +113,36 @@ class LoginPage extends StatelessWidget {
                         );
                       }
                     },
-                    child: Text("Iniciar sesión"),
+                    child: Text("Crear cuenta"),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.g_mobiledata,
-                      color: Colors.white,
-                      size: 50,
-                    ),
-                    style: IconButton.styleFrom(),
+                  ElevatedButton(
+                    onPressed: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                      // try {
+                      //   await _firebaseAuth.signInWithEmailAndPassword(
+                      //       email: _correoController.text,
+                      //       password: _passwordController.text);
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     SnackBar(
+                      //       content: Text("ya inicio sesion"),
+                      //     ),
+                      //   );
+                      // } catch (e) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     SnackBar(
+                      //       content: Text(
+                      //         e.toString(),
+                      //       ),
+                      //     ),
+                      //   );
+                      // }
+                    },
+                    child: Text("Iniciar sesión"),
                   )
                 ],
               ),
