@@ -1,10 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   TextEditingController _correoController = TextEditingController();
+
   TextEditingController _passwordController = TextEditingController();
+
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  String nameUser = '';
+
+  String emailUser = '';
 
   Widget fondo() {
     return Container(
@@ -23,8 +37,23 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _signInWithGoogle() {
-    try {} catch (e) {}
+  Future<void> _signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      final GoogleSignInAuthentication? googleSignInAuthentication =
+          await googleSignInAccount?.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication?.accessToken,
+        idToken: googleSignInAuthentication?.idToken,
+      );
+      final User? user =
+          (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+      setState(() {
+        nameUser = user!.displayName.toString();
+        emailUser = user.email.toString();
+      });
+    } catch (e) {}
   }
 
   @override
@@ -123,7 +152,12 @@ class LoginPage extends StatelessWidget {
                     child: Text("Iniciar sesión"),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _signInWithGoogle().then((value) {
+                        print(nameUser);
+                        print(emailUser);
+                      });
+                    },
                     icon: Icon(
                       Icons.g_mobiledata,
                       color: Colors.white,
