@@ -1,6 +1,7 @@
 import 'package:conectionfirebase2/pages/create_page.dart';
 import 'package:conectionfirebase2/pages/home_page.dart';
 import 'package:conectionfirebase2/pages/stream_page.dart';
+import 'package:conectionfirebase2/utils/tab_amap.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -25,12 +26,13 @@ class _TabBarPageState extends State<TabBarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TAB BAR PAGE"),
+        title: Text(pageDetails[_activePageIndex]["title"]),
+        backgroundColor: pageDetails[_activePageIndex]['navigationBarColor'],
       ),
-      body: _pages[_activePageIndex],
+      body: pageDetails[_activePageIndex]['pageName'],
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.red,
-        buttonBackgroundColor: Colors.amber,
+        backgroundColor: pageDetails[_activePageIndex]['navigationBarColor'],
+        buttonBackgroundColor: pageDetails[_activePageIndex]['botton_color'],
         items: [
           Icon(Icons.home),
           Icon(Icons.person),
