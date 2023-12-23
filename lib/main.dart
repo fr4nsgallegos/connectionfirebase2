@@ -3,6 +3,7 @@ import 'package:conectionfirebase2/pages/create_page.dart';
 import 'package:conectionfirebase2/pages/home_page.dart';
 import 'package:conectionfirebase2/pages/home_page2.dart';
 import 'package:conectionfirebase2/pages/login_page.dart';
+import 'package:conectionfirebase2/pages/map_page.dart';
 import 'package:conectionfirebase2/pages/stream_page.dart';
 import 'package:conectionfirebase2/pages/tab_bar_page.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,6 @@ void main() async {
   );
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: TabBarPage(),
+    home: MapPage(),
   ));
 }
