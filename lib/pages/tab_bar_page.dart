@@ -1,10 +1,40 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-class TabBarPage extends StatelessWidget {
-  const TabBarPage({super.key});
+class TabBarPage extends StatefulWidget {
+  @override
+  State<TabBarPage> createState() => _TabBarPageState();
+}
+
+class _TabBarPageState extends State<TabBarPage> {
+  int _activePageIndex = 0;
+  final PageController _pageController = PageController(initialPage: 0);
+  List<Widget> _pages = [
+    Center(child: Text("PAGE 1")),
+    Center(child: Text("PAGE 2")),
+    Center(child: Text("PAGE 3"))
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("TAB BAR PAGE"),
+      ),
+      body: _pages[_activePageIndex],
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.red,
+        buttonBackgroundColor: Colors.amber,
+        items: [
+          Icon(Icons.home),
+          Icon(Icons.person),
+          Icon(Icons.settings),
+        ],
+        onTap: (index) {
+          _activePageIndex = index;
+          setState(() {});
+        },
+      ),
+    );
   }
 }
