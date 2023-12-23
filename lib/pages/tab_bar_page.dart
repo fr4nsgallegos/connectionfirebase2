@@ -1,3 +1,6 @@
+import 'package:conectionfirebase2/pages/create_page.dart';
+import 'package:conectionfirebase2/pages/home_page.dart';
+import 'package:conectionfirebase2/pages/stream_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +13,9 @@ class _TabBarPageState extends State<TabBarPage> {
   int _activePageIndex = 0;
   final PageController _pageController = PageController(initialPage: 0);
   List<Widget> _pages = [
-    Center(child: Text("PAGE 1")),
-    Center(child: Text("PAGE 2")),
-    Center(child: Text("PAGE 3"))
+    HomePage(),
+    CreatePage(),
+    StreamPage(),
   ];
 
   @override
