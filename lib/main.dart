@@ -15,6 +15,6 @@ void main() async {
   );
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: CandidatePage(),
+    home: HomePage(),
   ));
 }

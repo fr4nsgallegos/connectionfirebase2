@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:conectionfirebase2/pages/stream_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -75,6 +76,13 @@ class HomePage extends StatelessWidget {
                   });
                 },
                 child: Text("Eliminar"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => StreamPage()));
+                },
+                child: Text("Go stream page"),
               ),
             ],
           ),
