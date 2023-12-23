@@ -3,18 +3,21 @@ import 'package:conectionfirebase2/pages/stream_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  Color bgColor;
+  HomePage({required this.bgColor});
   CollectionReference usersReference =
       FirebaseFirestore.instance.collection('USERS');
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "FirebaseApp",
-          ),
-          centerTitle: true,
-        ),
+        backgroundColor: bgColor,
+        // appBar: AppBar(
+        //   title: const Text(
+        //     "FirebaseApp",
+        //   ),
+        //   centerTitle: true,
+        // ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -79,8 +82,12 @@ class HomePage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => StreamPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StreamPage(
+                                bgColor: Colors.red,
+                              )));
                 },
                 child: Text("Go stream page"),
               ),

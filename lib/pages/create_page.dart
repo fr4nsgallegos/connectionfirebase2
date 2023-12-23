@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CreatePage extends StatelessWidget {
+  Color bgColor;
+  CreatePage({required this.bgColor});
   TextEditingController _correoController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -16,8 +18,11 @@ class CreatePage extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color(0xFF012F3D),
-            Color(0xFF0A4F64),
+            // Color(0xFF012F3D),
+            // Color(0xFF0A4F64),
+            bgColor.withOpacity(0.8),
+
+            bgColor,
           ],
         ),
       ),

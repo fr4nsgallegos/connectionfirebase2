@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class StreamPage extends StatefulWidget {
+  Color bgColor;
+  StreamPage({required this.bgColor});
   @override
   State<StreamPage> createState() => _StreamPageState();
 }
@@ -68,9 +70,10 @@ class _StreamPageState extends State<StreamPage> {
     });
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Stream Page"),
-        ),
+        backgroundColor: widget.bgColor,
+        // appBar: AppBar(
+        //   title: Text("Stream Page"),
+        // ),
         body: StreamBuilder(
           stream: userReference.snapshots(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {

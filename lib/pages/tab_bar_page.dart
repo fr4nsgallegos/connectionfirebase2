@@ -12,10 +12,13 @@ class TabBarPage extends StatefulWidget {
 class _TabBarPageState extends State<TabBarPage> {
   int _activePageIndex = 0;
   final PageController _pageController = PageController(initialPage: 0);
+
   List<Widget> _pages = [
-    HomePage(),
-    CreatePage(),
-    StreamPage(),
+    HomePage(bgColor: Colors.red),
+    CreatePage(
+      bgColor: Colors.red,
+    ),
+    StreamPage(bgColor: Colors.red),
   ];
 
   @override
