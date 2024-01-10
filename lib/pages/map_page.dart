@@ -1,3 +1,4 @@
+import 'package:conectionfirebase2/utils/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -7,12 +8,14 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  final _mapController = HomeController();
   Set<Marker> myMarkers = {};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
+        onMapCreated: _mapController.onMapCreated,
         markers: myMarkers,
         //1 solo marcador
         // {
